@@ -1,1 +1,9 @@
-<div class="p-2">Header</div>
+<ul class="p-4 flex flex-row ">
+  <li>
+    <%= link_to("Hello Rails", root_path, { class: "p-2 hover:bg-white hover:text-black" }) %>
+  </li>
+
+  <li>
+    <%= link_to("About", home_about_path, { class: "p-2 hover:bg-white hover:text-black" }) %>
+  </li>
+</ul>
