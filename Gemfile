@@ -58,3 +58,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "tailwindcss-rails", "~> 2.5"
 
 gem 'foreman', group: :development
+
+gem "devise", "~> 4.9"
