@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>HelloRails</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+<head>
+  <title>HelloRails</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body class="bg-black text-white">
-    <%= render "home/header" %>
-    <div class="p-4 bg-white text-black">
-    <%= yield %>
-    </div>
-    <%= render "home/footer" %>
-  </body>
+<body class="bg-black text-white h-screen flex flex-col">
+<!-- Header -->
+<header class="bg-gray-800 text-white">
+  <%= render "home/header" %>
+</header>
+
+<!-- Main Content -->
+<main class="flex-grow p-4 bg-white text-black">
+  <% if notice %>
+    <%= render "layouts/alert" %>
+  <% end %>
+  <%= yield %>
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white">
+  <%= render "home/footer" %>
+</footer>
+</body>
 </html>
