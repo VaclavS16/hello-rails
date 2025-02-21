@@ -1,34 +1,38 @@
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
   <div class="flex justify-between items-center mb-4">
     <h1 class="font-bold text-4xl">Friends</h1>
-    <%= link_to "New friend", new_friend_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+
+    <% if user_signed_in? %>
+      <%= link_to "New friend", new_friend_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <% end %>
   </div>
 
   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
     <tr>
-      <th scope="col" class="px-6 py-3">First Name</th>
-      <th scope="col" class="px-6 py-3">Last Name</th>
+      <th scope="col" class="px-6 py-3">Name</th>
       <th scope="col" class="px-6 py-3">Email</th>
-      <th scope="col" class="px-6 py-3">Action</th>
+      <% if user_signed_in? %>
+        <th scope="col" class="px-6 py-3">Action</th>
+      <% end %>
     </tr>
     </thead>
     <tbody>
     <% @friends.each do |friend| %>
       <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          <%= friend.first_name %>
+          <%= link_to friend.name, friend  %>
+          <%#= friend.first_name %> <%#= friend.last_name %>
         </th>
-        <td class="px-6 py-4">
-          <%= friend.last_name %>
-        </td>
         <td class="px-6 py-4">
           <%= friend.email %>
         </td>
-        <td class="px-6 py-4 flex flex-row">
-          <%= link_to "Edit", edit_friend_path(friend), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
-          <%= button_to "Destroy", friend_path(friend), method: :delete, class: "font-medium text-red-600 dark:text-red-500 hover:underline ml-2" %>
-        </td>
+        <% if user_signed_in? %>
+          <td class="px-6 py-4 flex flex-row">
+            <%= link_to "Edit", edit_friend_path(friend), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
+            <%= button_to "Destroy", friend_path(friend), method: :delete, class: "font-medium text-red-600 dark:text-red-500 hover:underline ml-2" %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
     </tbody>
